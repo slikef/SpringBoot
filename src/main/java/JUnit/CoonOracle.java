@@ -18,7 +18,7 @@ public class CoonOracle {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         String OracleDriver = "oracle.jdbc.driver.OracleDriver";
-        String URL = "jdbc:oracle:thin:@192.168.3.9:1521:orcl";
+        String URL = "jdbc:oracle:thin:@ip:1521:orcl";
         //查看NUM_ROWS行数的存储结构名（这种方式查看行数时要先进行表的统计，即执行存储结构）
         //call + 包名 + 存储过程名(传入、传出值)
         //单个表统计数据的统计数据更新
