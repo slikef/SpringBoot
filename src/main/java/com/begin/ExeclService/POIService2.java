@@ -464,8 +464,8 @@ public class POIService2 {
 
     public SQLbean readMap(Map<String, String> map) {
         SQLbean sb = new SQLbean();
-        sb.setQm("天津市");
-        sb.setSsbm("市农委");
+        sb.setQm("222");
+        sb.setSsbm("333");
         sb.setFjsx(map.get("fjsx"));
         sb.setSxmc(map.get("sxmc"));
         sb.setSxxz(map.get("sxxz"));
