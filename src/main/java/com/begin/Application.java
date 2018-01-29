@@ -28,7 +28,7 @@ public class Application implements ApplicationRunner{
         ConfigurableApplicationContext context = sapp.run(args);
         ConfigurableEnvironment environment = context.getEnvironment();
         FirstServer firstserver = context.getBean(FirstServer.class);
-        String path="F:\\mail\\city\\24市农委（第六批没密码）\\天津市农委_政务服务事项梳理结果第六批";
+        String path="1111";
         firstserver.start2(environment.getActiveProfiles(),path);
     }
 
