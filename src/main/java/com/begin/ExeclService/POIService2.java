@@ -47,8 +47,8 @@ public class POIService2 {
         }
         int mergedRegion = isMergedRegion(sheet, 22 + i);
 //        sb.setId(UUID.randomUUID().node());
-        sb.setQm("天津市");
-        sb.setSsbm("市规划局");
+        sb.setQm("111");
+        sb.setSsbm("222");
         sb.setFjsx(getStringValue(sheet.getRow(1).getCell(0)));
         sb.setFwdx(getStringValue(sheet.getRow(2 + i).getCell(1)) + getStringValue(sheet.getRow(3).getCell(4)));
         sb.setFrzt(getStringValue(sheet.getRow(3 + i).getCell(1)));
