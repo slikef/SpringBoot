@@ -1,19 +1,12 @@
-package JUnit;
+package JUnit.jinedaxiaoxie;
 
 import org.apache.commons.lang3.StringUtils;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Scanner;
 
-public class ToUpdata2 extends JFrame{
-    private JPanel contentPane;
-    private JTextField ipField;
+public class ToUpdata {
+
     // 大写数字
     private final static String[] STR_NUMBER = { "零", "壹", "贰", "叁", "肆", "伍",
             "陆", "柒", "捌", "玖" };
@@ -22,53 +15,11 @@ public class ToUpdata2 extends JFrame{
     private final static String[] STR_UNIT2 = { "角", "分", "厘" };// 小数单位
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    ToUpdata2 frame = new ToUpdata2();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
-     * Create the frame.
-     */
-    public ToUpdata2() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(400, 400, 400, 200);
-        setLocationRelativeTo(null);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setContentPane(contentPane);
-        contentPane.setLayout(null);
-
-        JLabel lblip = new JLabel("请输入小写金额：");
-        lblip.setBounds(60, 40, 162, 20);
-        contentPane.add(lblip);
-
-        ipField = new JTextField();
-        ipField.setBounds(160, 40, 160, 25);
-        contentPane.add(ipField);
-
-        JButton button = new JButton("转为大写");
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                do_button_actionPerformed(e);
-            }
-        });
-        button.setBounds(160, 80, 90, 30);
-        contentPane.add(button);
-    }
-
-    protected void do_button_actionPerformed(ActionEvent e) {
-        String text = ipField.getText();// 获取用户输入
-        String info = convert(text);;// 对输入文本进行IP验证
-        JOptionPane.showMessageDialog(null, info);// 用对话框输出验证结果
-
+        Scanner scan = new Scanner(System.in);// 创建扫描器
+        System.out.println("请输入一个金额");
+        // 获取金额转换后的字符串
+        String convert = convert(scan.nextDouble());
+        System.out.println(convert);// 输出转换结果
     }
 
     /**
@@ -172,13 +123,12 @@ public class ToUpdata2 extends JFrame{
      *            金额
      * @return 转换成大写的全额
      */
-    public static String convert(String d) {
-        if(!isNumeric(d)) return "请输入正确的小写金额！";
+    public static String convert(double d) {
         // 实例化DecimalFormat对象
         DecimalFormat df = new DecimalFormat("#0.###");
 //        DecimalFormat df1 = new DecimalFormat("#0.000");
         // 格式化double数字
-        String strNum = df.format(Double.parseDouble(d));
+        String strNum = df.format(d);
         // 判断是否包含小数点
         String point = "元整";// 小数点
         int strLength = strNum.length();
@@ -189,7 +139,8 @@ public class ToUpdata2 extends JFrame{
         }
         // 整数部分大于12不能转换
         if (strLength > 12) {
-            return "数字太大，不能完成转换！";
+            System.out.println("数字太大，不能完成转换！");
+            return "";
         }
         // 转换结果
         String result = getInteger(strNum) + point + getDecimal(strNum);
@@ -197,19 +148,5 @@ public class ToUpdata2 extends JFrame{
             result = result.substring(1, result.length()); // 截取字符串
         }
         return result; // 返回新的字符串
-    }
-
-    /***
-     * 判断字符串是否为数字（包含小数点）
-     * @param str
-     * @return
-     */
-    public static boolean isNumeric(String str){
-        Pattern pattern = Pattern.compile("[0-9]+\\.*[0-9]*");
-        Matcher isNum = pattern.matcher(str);
-        if( !isNum.matches() ){
-            return false;
-        }
-        return true;
     }
 }

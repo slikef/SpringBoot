@@ -1,4 +1,4 @@
-package JUnit;
+package JUnit.ASCIIzhuanma;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -15,11 +15,10 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+    /**
+    对单个字符进行转码
+     */
     public class ASCIITo extends JFrame {
-
-        /**
-         *
-         */
         private static final long serialVersionUID = -6067423561196663639L;
         private JPanel contentPane;
         private JTextField asciiTextField;
@@ -30,29 +29,29 @@ import javax.swing.border.EtchedBorder;
         /**
          * Launch the application.
          */
-        public static void main(String[] args) {
-            try {
-                UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-            } catch (Throwable e) {
-                e.printStackTrace();
-            }
-            EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    try {
-                        ASCIITo frame = new ASCIITo();
-                        frame.setVisible(true);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Throwable e) {
+            e.printStackTrace();
         }
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    ASCIITo frame = new ASCIITo();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
         /**
          * Create the frame.
          */
         public ASCIITo() {
-            setTitle("ASCII\u7F16\u7801\u67E5\u770B\u5668");
+            setTitle("ASCII编码查看器");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(100, 100, 450, 150);
             contentPane = new JPanel();
@@ -69,16 +68,16 @@ import javax.swing.border.EtchedBorder;
             panel.add(asciiPanel);
             asciiPanel.setLayout(new GridLayout(1, 5, 5, 5));
 
-            JLabel label1 = new JLabel("\u8F93\u5165\u5B57\u7B26\uFF1A");
+            JLabel label1 = new JLabel("输入字符");
             label1.setFont(new Font("微软雅黑", Font.PLAIN, 16));
             asciiPanel.add(label1);
-// test value
+
             asciiTextField = new JTextField();
             asciiTextField.setFont(new Font("微软雅黑", Font.PLAIN, 16));
             asciiPanel.add(asciiTextField);
             asciiTextField.setColumns(3);
 
-            JLabel label2 = new JLabel("\u8F6C\u6362\u7ED3\u679C\uFF1A");
+            JLabel label2 = new JLabel("转换结果");
             label2.setFont(new Font("微软雅黑", Font.PLAIN, 16));
             asciiPanel.add(label2);
 
@@ -86,7 +85,7 @@ import javax.swing.border.EtchedBorder;
             label3.setFont(new Font("微软雅黑", Font.PLAIN, 16));
             asciiPanel.add(label3);
 //changTo
-            JButton toNumberButton = new JButton("\u8F6C\u6362");
+            JButton toNumberButton = new JButton("转换");
             toNumberButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     do_toNumberButton_actionPerformed(e);
@@ -100,7 +99,7 @@ import javax.swing.border.EtchedBorder;
             panel.add(numberPanel);
             numberPanel.setLayout(new GridLayout(1, 5, 5, 5));
 
-            JLabel label4 = new JLabel("\u8F93\u5165\u6570\u5B57\uFF1A");
+            JLabel label4 = new JLabel("输入数字");
             label4.setFont(new Font("微软雅黑", Font.PLAIN, 16));
             numberPanel.add(label4);
 
@@ -109,7 +108,7 @@ import javax.swing.border.EtchedBorder;
             numberPanel.add(numberTextField);
             numberTextField.setColumns(3);
 
-            JLabel label5 = new JLabel("\u8F6C\u6362\u7ED3\u679C\uFF1A");
+            JLabel label5 = new JLabel("转换结果");
             label5.setFont(new Font("微软雅黑", Font.PLAIN, 16));
             numberPanel.add(label5);
 
@@ -117,7 +116,8 @@ import javax.swing.border.EtchedBorder;
             label6.setFont(new Font("微软雅黑", Font.PLAIN, 16));
             numberPanel.add(label6);
 
-            JButton toASCIIButton = new JButton("\u8F6C\u6362");
+            JButton toASCIIButton = new JButton("数字转化");
+            toASCIIButton.setFont(new Font("微软雅黑", Font.PLAIN, 16));
             toASCIIButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     do_toASCIIButton_actionPerformed(e);
@@ -129,13 +129,21 @@ import javax.swing.border.EtchedBorder;
 
         protected void do_toNumberButton_actionPerformed(ActionEvent e) {
             String ascii = asciiTextField.getText();
-            int i = Character.codePointAt(ascii, 0);
-            label3.setText("" + i);
+            if(!ascii.isEmpty()) {
+                int i = Character.codePointAt(ascii, 0);
+                label3.setText("" + i);
+            }else {
+                label3.setText("请填字符" );
+            }
         }
 
         protected void do_toASCIIButton_actionPerformed(ActionEvent e) {
             String number = numberTextField.getText();
-            char[] a = Character.toChars(Integer.parseInt(number));
-            label6.setText(new String(a));
+            if(!number.isEmpty()){
+                char[] a = Character.toChars(Integer.parseInt(number));
+                label6.setText(new String(a));
+            }else {
+                label6.setText("请填数字");
+            }
         }
     }

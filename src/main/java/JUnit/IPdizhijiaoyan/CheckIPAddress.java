@@ -1,4 +1,4 @@
-package JUnit;
+package JUnit.IPdizhijiaoyan;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;

@@ -1,4 +1,4 @@
-package JUnit;
+package JUnit.jieping;
 
 import java.awt.AWTException;
 import java.awt.Color;
